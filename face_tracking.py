@@ -5,7 +5,7 @@ import time
 import cv2
 import paho.mqtt.client as mqtt
 
-# Define Variables
+# Define MQTT Variables
 MQTT_HOST = "10.0.0.39" # My Raspberry Pi wLan address
 MQTT_PORT = 1883
 MQTT_KEEPALIVE_INTERVAL = 45
@@ -24,7 +24,7 @@ mqttc.on_publish = on_publish
 # Connect with MQTT Broker
 mqttc.connect(MQTT_HOST, MQTT_PORT, MQTT_KEEPALIVE_INTERVAL) 
 
-#arduino = serial.Serial('COM11',9600)
+# Initialize OpenCV
 FCascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 video_capture = cv2.VideoCapture(0)
 
