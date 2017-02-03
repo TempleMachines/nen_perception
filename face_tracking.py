@@ -1,5 +1,5 @@
 # Script MUST be run with python 2.7 and opencv 2.4
-# Script is run on a desktop pc, x,y values are sent to raspberry pi for control.
+# Script is run on a desktop pc, x,y values are sent to raspberry pi for servo control.
 
 import time
 import cv2
