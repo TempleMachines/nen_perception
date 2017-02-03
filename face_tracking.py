@@ -6,7 +6,7 @@ import cv2
 import paho.mqtt.client as mqtt
 
 # Define Variables
-MQTT_HOST = "10.0.0.39" #Raspberry Pi wLan address
+MQTT_HOST = "10.0.0.39" # My Raspberry Pi wLan address
 MQTT_PORT = 1883
 MQTT_KEEPALIVE_INTERVAL = 45
 MQTT_TOPIC = "face_tracking"
