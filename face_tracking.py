@@ -11,7 +11,6 @@ MQTT_PORT = 1883
 MQTT_KEEPALIVE_INTERVAL = 45
 MQTT_TOPIC = "face_tracking"
 
-
 # Define on_publish event function
 def on_publish(client, userdata, mid):
  print "MQTT: "
