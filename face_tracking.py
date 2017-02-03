@@ -29,8 +29,6 @@ mqttc.connect(MQTT_HOST, MQTT_PORT, MQTT_KEEPALIVE_INTERVAL)
 FCascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 video_capture = cv2.VideoCapture(0)
 
-
-
 while True:
 	ret, frame = video_capture.read()
 	gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
