@@ -1,9 +1,7 @@
 # Script MUST be run with python 2.7 and opencv 2.4
 # Script is run on a desktop pc, x,y values are sent to raspberry pi for control.
 
-#import serial
 import time
-import struct
 import cv2
 import paho.mqtt.client as mqtt
 
@@ -53,20 +51,12 @@ while True:
 		
 		# Publish message to MQTT Broker 
 		mqttc.publish(MQTT_TOPIC,MQTT_MSG)
-		#mqtcc.publish(X,x1)
-		#arduino.write('x')
-		#arduino.write(struct.pack('>B',x1)) #write x values to arduino for pan
-		#arduino.write('y')
-		#arduino.write(struct.pack('>B',y1)) #write x values to arduino for pan
 		
-
 	cv2.imshow('Video', frame)
 
 	if cv2.waitKey(1) & 0xFF == ord('q'):
 		break
 video_capture.release()
-#arduino.close()
-# Disconnect from MQTT_Broker
-mqttc.disconnect()
+mqttc.disconnect() # Disconnect from MQTT_Broker
 cv2.destroyAllWindows()
 
