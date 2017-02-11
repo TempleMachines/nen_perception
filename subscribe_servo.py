@@ -3,12 +3,11 @@ import paho.mqtt.client as mqtt
 import RPi.GPIO as GPIO
 import time
 
-#Servo Setup
+# Servo Setup
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(12, GPIO.OUT)
 sx = GPIO.PWM(12, 50)
-sx.start(7)
-
+sx.start(7) # Start position of servo
 
 # Define MQTT Variables
 MQTT_HOST = "10.0.0.39"
@@ -27,7 +26,7 @@ def on_connect(mosq, obj, rc):
 # a new message arrives for the subscribed topic 
 
 def on_message(mosq, obj, msg):
-#Our actions need to take place within the message loop
+# Our actions need to take place within the message loop
  print "Topic: " + str(msg.topic)
  print "QoS: " + str(msg.qos)
  print "Payload: " + str(msg.payload)
@@ -56,7 +55,7 @@ def on_message(mosq, obj, msg):
 		degree_X -= .02
 		sx.ChangeDutyCycle(degree_X)
 		time.sleep(.02)
-		#print 'over 50'
+		# print 'over 50'
 		
 	 elif servoX1 < '50.0':
 		degree_X += .02
@@ -64,7 +63,7 @@ def on_message(mosq, obj, msg):
 			degree_X += 1
 		sx.ChangeDutyCycle(degree_X)
 		time.sleep(.02)
-		#print 'under 50'
+		# print 'under 50'
 		
 
 def on_subscribe(mosq, obj, mid, granted_qos):
@@ -82,45 +81,8 @@ mqttc.on_subscribe = on_subscribe
 # Connect with MQTT Broker
 mqttc.connect(MQTT_HOST, MQTT_PORT, MQTT_KEEPALIVE_INTERVAL)
 
-
-
 # Continue monitoring the incoming messages for subscribed topic
 mqttc.loop_forever()
-
-
-
-
-#Parse MQTT payload
-
-for i in values:
-	 if i == 'x':
-		servoX = values.rsplit('y',1)[0] 
-		servoY = values.split("y",1)[1]
-		
-		for i in servoX:
-			if i == 'x':
-				servoX1 = servoX[1:]
-	
-		print servoX1
-		print servoY
-	
-		x_value = servoX1
-		y_value = servoY
-		
-		degree_X = 7
-		degree_Y = 7
-		
-	 if servoX1 > '50.0':
-		degree_X += 0.009
-		sx.ChangeDutyCycle(degree_X)
-		time.sleep(.02)
-		print 'over 50'
-		
-	 elif servoX1 < '50.0':
-		degree_X -= 0.009
-		sx.ChangeDutyCycle(degree_X)
-		time.sleep(.02)
-		print 'under 50'
 		
 		
 		
